@@ -1,5 +1,6 @@
 package ar.com.yosuelto.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ public class Publication {
 
     private String description;
 
+    @Column(name = "publication_date")
     private Calendar publicationDate;
 
     public Publication() {
