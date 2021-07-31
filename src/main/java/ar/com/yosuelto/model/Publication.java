@@ -1,9 +1,6 @@
 package ar.com.yosuelto.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -11,13 +8,16 @@ import java.util.concurrent.TimeUnit;
 public class Publication {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String description;
 
     @Column(name = "publication_date")
     private Calendar publicationDate;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     public Publication() {
     }
@@ -47,8 +47,11 @@ public class Publication {
     }
 
     public String getImageUrl() {
-        // TODO revisar dominio para produccion y quitar hardcodeo de JPG:
-        return "http://localhost:8080/donacion/imagen/" + this.getId() + ".jpg";
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getPublicationDateSince() {

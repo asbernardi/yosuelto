@@ -4,6 +4,7 @@ import ar.com.yosuelto.model.Postulation;
 import ar.com.yosuelto.model.Publication;
 import ar.com.yosuelto.repositories.PostulationRepository;
 import ar.com.yosuelto.repositories.PublicationRepository;
+import ar.com.yosuelto.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,22 +13,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Calendar;
 
 @Controller
 public class DonationController {
-
-    private static final String FILES_PATH = "/home/adrian/cosas/yosuelto/images/publication/";
 
     @Autowired
     private PublicationRepository publicationRepository;
 
     @Autowired
     private PostulationRepository postulationRepository;
+
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping("/")
     public String getPublications(Model model) {
@@ -38,12 +36,11 @@ public class DonationController {
 
     @GetMapping("/donacion/imagen/{id}")
     public ResponseEntity<byte[]> getPublication(@PathVariable String id, Model model) {
-        try {
-            byte[] image = Files.readAllBytes(Paths.get(FILES_PATH + id).toAbsolutePath());
+        // Este método sólo se usa localmente
+        byte[] image = imageService.getLocalImage(id);
+
+        if (image != null) {
             return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
-        } catch (IOException e) {
-            // TODO implementar log.
-            e.printStackTrace();
         }
         return ResponseEntity.notFound().build();
     }
@@ -57,16 +54,14 @@ public class DonationController {
     @PostMapping("/donacion/soltar")
     public String postDonation(@ModelAttribute Publication publication, @RequestParam("formFile") MultipartFile formFile, Model model) {
         publication.setPublicationDate(Calendar.getInstance());
+        // TODO por ahora es necesario guardar la publicacion para tener un ID. Luego con ese ID se puede subir la imagen.
         publicationRepository.save(publication);
 
-        // TODO quitar hardcodeo de JPG:
-        Path absolutePath = Paths.get(FILES_PATH + publication.getId() + ".jpg").toAbsolutePath();
-        try {
-            formFile.transferTo(absolutePath);
-        } catch (IOException e) {
-            // TODO implementar log.
-            e.printStackTrace();
-        }
+        imageService.upload(publication, formFile);
+        String url = imageService.getImageUrl(publication);
+
+        publication.setImageUrl(url);
+        publicationRepository.save(publication);
 
         model.addAttribute("publications", publicationRepository.findAll());
         return "redirect:/";

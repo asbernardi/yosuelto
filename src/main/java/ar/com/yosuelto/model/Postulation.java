@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class Postulation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Transient
