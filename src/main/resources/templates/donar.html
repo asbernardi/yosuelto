@@ -13,7 +13,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -36,61 +36,63 @@
     <link href="/form-validation.css" rel="stylesheet">
   </head>
   <body class="bg-light">
-    
-<div class="container">
-  <main>
-    <div class="text-center">
-      <img class="d-block mx-auto mb-4" src="/yosuelto.png" alt="" width="72" height="57">
-      <h2>¡Suelta rápida!</h2>
-      <p class="lead">En esta sección, podes soltar (donar) lo que vos ya no uses. Acordate que todo sirve. Te pedimos por favor que lo que sueltes esté limpio, y que no esté roto.</p>
-    </div>
 
-    <div class="row g-5">
-      <div class="col-md-12 col-lg-12">
-        <h4 class="mb-3">Tu Suelta</h4>
-        <form class="needs-validation" novalidate enctype="multipart/form-data" action="#" th:action="@{/donacion/soltar}" th:object="${publication}" method="post">
-          <div class="row g-3">
-            <div class="col-12">
-              <label for="descripcion" class="form-label">Descripción</label>
-              <input type="text" class="form-control" id="descripcion" placeholder="" value="" required th:field="*{description}">
-              <div class="invalid-feedback">
-                Por favor escribi una descripción de lo que estás soltando.
-              </div>
-            </div>
+  <header th:replace="header :: header"></header>
 
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
-              <div class="invalid-feedback">
-                Por favor dejanos una dirección de correo electrónico, para poder escribirte quienes se postularon para recibir tu suelta.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="formFile" class="form-label">Foto de tu suelta</label>
-              <input class="form-control" type="file" id="formFile" name="formFile" required>
-              <div class="invalid-feedback">
-                Por favor dejanos una foto de lo que soltás, así las personas pueden ver como es.
-              </div>
-            </div>
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" type="submit">¡Soltar!</button>
-        </form>
+  <div class="container">
+    <main>
+      <div class="text-center">
+        <h2>¡Suelta rápida!</h2>
+        <p class="lead">En esta sección, podes soltar (donar) lo que vos ya no uses. Acordate que todo sirve. Te pedimos por favor que lo que sueltes esté limpio, y que no esté roto.</p>
       </div>
-    </div>
-  </main>
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2021 YoSuelto</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
-</div>
+      <div class="row g-5">
+        <div class="col-md-12 col-lg-12">
+          <h4 class="mb-3">Tu Suelta</h4>
+          <form class="needs-validation" novalidate enctype="multipart/form-data" action="#" th:action="@{/donacion/soltar}" th:object="${publication}" method="post">
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" placeholder="" value="" required th:field="*{description}">
+                <div class="invalid-feedback">
+                  Por favor escribi una descripción de lo que estás soltando.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                <div class="invalid-feedback">
+                  Por favor dejanos una dirección de correo electrónico, para poder escribirte quienes se postularon para recibir tu suelta.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="formFile" class="form-label">Foto de tu suelta</label>
+                <input class="form-control" type="file" id="formFile" name="formFile" required>
+                <div class="invalid-feedback">
+                  Por favor dejanos una foto de lo que soltás, así las personas pueden ver como es.
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <button class="w-100 btn btn-primary btn-lg" type="submit">¡Soltar!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2021 YoSuelto</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+  </div>
 
     <script src="/bootstrap.bundle.min.js"></script>
 
