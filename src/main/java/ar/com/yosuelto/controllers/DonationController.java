@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Calendar;
+import java.util.Optional;
 
 @Controller
 public class DonationController {
@@ -85,5 +86,13 @@ public class DonationController {
 
         model.addAttribute("publications", publicationRepository.findAll());
         return "redirect:/";
+    }
+
+    @GetMapping("/donacion/{url}")
+    public String getDonationPage(@PathVariable String url, Model model) {
+        String id = url.substring(url.lastIndexOf("-")+1, url.length());
+        Optional<Publication> publication = publicationRepository.findById(new Long(id));
+        model.addAttribute("publication", publication.get());
+        return "donation";
     }
 }

@@ -69,4 +69,8 @@ public class Publication {
         }
     }
 
+    public String getUrl() {
+        return description.replace(" ", "-").toLowerCase().concat("-").concat(id.toString());
+    }
+
 }
