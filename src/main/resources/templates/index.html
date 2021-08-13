@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap.min.css" rel="stylesheet">
+    <link href="/yosuelto.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -42,7 +43,7 @@
                 <h1 class="fw-light">Yo Suelto</h1>
                 <p class="lead text-muted">Acá podés soltar (donar) todas las cosas que ya no usás más. También podés postularte para recibir cosas que otras personas soltaron. Todo lo que hay en este sitio es gratis.</p>
                 <p>
-                    <a href="/donacion/donar" class="btn btn-primary my-2">¡Donar ahora!</a>
+                    <a href="/donacion/donar" class="btn btn-purple my-2">¡Donar ahora!</a>
                     <a href="#" class="btn btn-secondary my-2">Secondary action</a>
                 </p>
             </div>
@@ -62,7 +63,7 @@
                             <p class="card-text" th:text="${publication.description}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
+                                    <button type="button" class="btn btn-sm btn-purple" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted" th:text="${publication.publicationDateSince}">hace 9 minutos</small>
@@ -95,7 +96,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Postularme</button>
+                        <button type="submit" class="btn btn-purple">Postularme</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
