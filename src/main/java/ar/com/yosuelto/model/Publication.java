@@ -2,6 +2,7 @@ package ar.com.yosuelto.model;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Entity
@@ -18,6 +19,9 @@ public class Publication {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @OneToMany(mappedBy = "publication")
+    private List<Postulation> postulations;
 
     public Publication() {
     }
@@ -54,6 +58,14 @@ public class Publication {
         this.imageUrl = imageUrl;
     }
 
+    public List<Postulation> getPostulations() {
+        return postulations;
+    }
+
+    public void setPostulations(List<Postulation> postulations) {
+        this.postulations = postulations;
+    }
+
     public String getPublicationDateSince() {
         Calendar now = Calendar.getInstance();
         long diff = now.getTimeInMillis() - publicationDate.getTimeInMillis();
@@ -72,5 +84,4 @@ public class Publication {
     public String getUrl() {
         return description.replace(" ", "-").toLowerCase().concat("-").concat(id.toString());
     }
-
 }

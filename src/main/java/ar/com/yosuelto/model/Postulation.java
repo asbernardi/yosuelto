@@ -2,6 +2,7 @@ package ar.com.yosuelto.model;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 public class Postulation {
@@ -14,6 +15,7 @@ public class Postulation {
     private Long publicationId;
 
     @ManyToOne
+    @JoinColumn(name = "publication_id", nullable = false)
     private Publication publication;
 
     private String email;
@@ -61,6 +63,21 @@ public class Postulation {
 
     public void setPostulationDate(Calendar postulationDate) {
         this.postulationDate = postulationDate;
+    }
+
+    public String getPostulationDateSince() {
+        Calendar now = Calendar.getInstance();
+        long diff = now.getTimeInMillis() - postulationDate.getTimeInMillis();
+
+        if (diff < 60000) {
+            return "hace segundos";
+        } else if (diff < 3600000) {
+            return "hace " + TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS) + " minutos";
+        } else if (diff < 86400000) {
+            return "hace " + TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) + " horas";
+        } else {
+            return "hace " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " días";
+        }
     }
 
 }
