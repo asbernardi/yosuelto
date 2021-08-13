@@ -14,6 +14,9 @@ public class Publication {
 
     private String description;
 
+    // Donor's email address.
+    private String email;
+
     @Column(name = "publication_date")
     private Calendar publicationDate;
 
@@ -40,6 +43,14 @@ public class Publication {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Calendar getPublicationDate() {
@@ -84,4 +95,5 @@ public class Publication {
     public String getUrl() {
         return description.replace(" ", "-").toLowerCase().concat("-").concat(id.toString());
     }
+
 }

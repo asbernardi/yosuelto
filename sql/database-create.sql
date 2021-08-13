@@ -11,6 +11,7 @@ CREATE TABLE postulation (
 CREATE TABLE publication (
     id  bigserial not null,
     description varchar(255),
+    email varchar(255),
     image_url varchar(255),
     publication_date timestamp,
     PRIMARY KEY (id)
