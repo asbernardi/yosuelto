@@ -51,7 +51,7 @@
               <b><span>Donación de:&nbsp;</span></b><p th:text="${publication.email}">carlos@gmail.com</p>
               <b><span>¿Cuando?&nbsp;</span></b><p th:text="${publication.publicationDateSince}">hace 3 días</p>
               <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-purple btn-lg px-4 me-md-2">¡Postularme!</button>
+                <button type="button" class="btn btn-purple btn-lg px-4 me-md-2" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4">Volver</button>
               </div>
             </div>
@@ -79,9 +79,50 @@
         </div>
       </div>
 
+      <!-- Modal -->
+      <div class="modal fade" id="postulationModal" tabindex="-1" aria-labelledby="postulationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="postulationModalLabel">Postulación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form class="needs-validation" novalidate action="#" th:action="@{/donacion/postular}" th:object="${postulation}" method="post">
+              <div class="modal-body">
+                <p>¡Postulate como candidato para recibir esta donación!</p>
+                <input type="hidden" id="publicationId" placeholder="" value="" th:field="*{publicationId}">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" required th:field="*{email}">
+                <div class="invalid-feedback">
+                  Por favor dejanos una dirección de correo electrónico, para poder avisarte si te regalaron esta donación.
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-purple">Postularme</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </main>
 
     <script src="/bootstrap.bundle.min.js"></script>
-      
+
+    <script>
+      var postulationModal = document.getElementById('postulationModal')
+      postulationModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var donationId = button.getAttribute('data-bs-donation-id')
+
+        document.getElementById('publicationId').value = donationId
+      })
+    </script>
+
   </body>
 </html>

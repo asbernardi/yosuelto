@@ -93,6 +93,7 @@ public class DonationController {
         String id = url.substring(url.lastIndexOf("-")+1, url.length());
         Optional<Publication> publication = publicationRepository.findById(new Long(id));
         model.addAttribute("publication", publication.get());
+        model.addAttribute("postulation", new Postulation());
         return "donation";
     }
 }
