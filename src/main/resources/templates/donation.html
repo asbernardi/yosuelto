@@ -9,7 +9,7 @@
 
     <title th:text="@{'YoSuelto - ' + ${publication.description}}">Donación de Televisor de 20 pulgadas</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/heroes/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap.min.css" rel="stylesheet">
@@ -31,50 +31,63 @@
       }
     </style>
 
-    <!-- Custom styles for this template -->
-    <link href="/heroes.css" rel="stylesheet">
   </head>
   <body>
 
     <header th:replace="header :: header"></header>
 
     <main>
-      <div class="container col-xxl-8 px-4 py-5">
 
-        <h1 th:text="${publication.description}">Televisor de 20 pulgadas. Tiene entrada de audio y video. Incluye control remoto.</h1>
+      <section class="py-1 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light" th:text="${publication.description}">Televisor de 20 pulgadas. Tiene entrada de audio y video. Incluye control remoto.</h1>
+          </div>
+        </div>
+      </section>
 
-        <div class="row g-5 py-5">
+      <div class="album py-1 bg-light">
+        <div class="container">
 
-          <div class="card col-10 col-sm-8 col-lg-6">
-            <img src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.imageUrl}" width="100%" height="225" class="card-img-top" th:alt="${publication.description}" loading="lazy"/>
-            <div class="card-body">
-              <b><span>Donación de:&nbsp;</span></b><p th:text="${publication.email}">carlos@gmail.com</p>
-              <b><span>¿Cuando?&nbsp;</span></b><p th:text="${publication.publicationDateSince}">hace 3 días</p>
-              <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-purple btn-lg px-4 me-md-2" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Volver</button>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.imageUrl}" class="bd-placeholder-img card-img-top" width="100%" height="100%" th:alt="${publication.description}" th:title="${publication.description}" loading="lazy"/>
+
+                <div class="card-body">
+                  <label class="form-label">Donación de: </label>
+                  <p class="card-text" th:text="${publication.email}">carlos@gmail.com</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-purple btn-sm" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Volver</button>
+                    </div>
+                    <small class="text-muted" th:text="${publication.publicationDateSince}">hace 3 días</small>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-lg-6">
-            <h5>Personas que se anotaron:</h5>
-            <table class="table">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Email</th>
-                <th scope="col">Fecha postulación</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr th:each="postulation : ${publication.postulations}">
-                <th scope="row"><span th:text="${postulation.id}"></span></th>
-                <td><span th:text="${postulation.email}"></span></td>
-                <td><span th:text="${postulation.postulationDateSince}"></span></td>
-              </tr>
-              </tbody>
-            </table>
+            <div class="col">
+              <div class="card shadow-sm">
+                <h5>Personas que se anotaron:</h5>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fecha postulación</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="postulation : ${publication.postulations}">
+                    <th scope="row"><span th:text="${postulation.id}"></span></th>
+                    <td><span th:text="${postulation.email}"></span></td>
+                    <td><span th:text="${postulation.postulationDateSince}"></span></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -109,6 +122,16 @@
       </div>
 
     </main>
+
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+      </div>
+    </footer>
 
     <script src="/bootstrap.bundle.min.js"></script>
 
