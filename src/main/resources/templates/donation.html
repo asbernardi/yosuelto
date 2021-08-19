@@ -73,14 +73,12 @@
                 <table class="table">
                   <thead>
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Email</th>
                     <th scope="col">Fecha postulación</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr th:each="postulation : ${publication.postulations}">
-                    <th scope="row"><span th:text="${postulation.id}"></span></th>
                     <td><span th:text="${postulation.email}"></span></td>
                     <td><span th:text="${postulation.postulationDateSince}"></span></td>
                   </tr>
