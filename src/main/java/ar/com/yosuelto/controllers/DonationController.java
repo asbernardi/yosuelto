@@ -94,6 +94,9 @@ public class DonationController {
         Optional<Publication> publication = publicationRepository.findById(new Long(id));
         model.addAttribute("publication", publication.get());
         model.addAttribute("postulation", new Postulation());
+
+        long donations = publicationRepository.countByEmail(publication.get().getEmail());
+        model.addAttribute("donations", donations);
         return "donation";
     }
 }
