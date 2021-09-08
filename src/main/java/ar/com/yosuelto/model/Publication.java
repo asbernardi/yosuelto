@@ -26,6 +26,9 @@ public class Publication {
     @OneToMany(mappedBy = "publication")
     private List<Postulation> postulations;
 
+    @ManyToOne
+    private Location location;
+
     public Publication() {
     }
 
@@ -75,6 +78,14 @@ public class Publication {
 
     public void setPostulations(List<Postulation> postulations) {
         this.postulations = postulations;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getPublicationDateSince() {
