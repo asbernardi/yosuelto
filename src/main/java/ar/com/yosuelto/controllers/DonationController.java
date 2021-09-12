@@ -68,7 +68,7 @@ public class DonationController {
         publication.setPublicationDate(Calendar.getInstance());
 
         String remoteAddr = request.getRemoteAddr();
-        logger.info("Remote address: " + remoteAddr);
+        System.out.println("Remote address: " + remoteAddr);
 
         if (locationService.getLocation(remoteAddr) == null) {
             Location location = locationService.saveLocation(remoteAddr);

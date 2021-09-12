@@ -20,14 +20,14 @@ public class LocationService {
     private Logger logger = LoggerFactory.getLogger(LocationService.class);
 
     public Location saveLocation(String ip) {
-        logger.info("IP: " + ip);
+        System.out.println("ip: " + ip);
         Location location = geoIPClient.getLocation(ip);
-        logger.info("Location: " + location);
+        System.out.println("location: " + location);
         return locationRepository.save(location);
     }
 
     public Location getLocation(String ip) {
-        logger.info("IP: " + ip);
+        System.out.println("ip: " + ip);
         return locationRepository.findByQuery(ip);
     }
 }
