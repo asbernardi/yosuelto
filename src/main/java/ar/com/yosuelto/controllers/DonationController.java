@@ -8,6 +8,7 @@ import ar.com.yosuelto.repositories.PublicationRepository;
 import ar.com.yosuelto.services.ImageService;
 import ar.com.yosuelto.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class DonationController {
 
     @GetMapping("/")
     public String getPublications(Model model) {
-        model.addAttribute("publications", publicationRepository.findAll());
+        model.addAttribute("publications", publicationRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
         model.addAttribute("postulation", new Postulation());
         return "index";
     }
