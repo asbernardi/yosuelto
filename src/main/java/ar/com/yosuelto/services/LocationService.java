@@ -27,6 +27,7 @@ public class LocationService {
     }
 
     public Location getLocation(String ip) {
+        logger.info("IP: " + ip);
         return locationRepository.findByQuery(ip);
     }
 }
