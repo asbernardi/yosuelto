@@ -30,6 +30,11 @@ public class LocationService {
         System.out.println("ip: " + ip);
         Location location = locationRepository.findByQuery(ip);
         System.out.println("location: " + location);
+        System.out.println("location city: " + location.getCity());
+        System.out.println("location status: " + location.getStatus());
+        System.out.println("location country: " + location.getCountry());
+        System.out.println("location region: " + location.getRegion());
+        System.out.println("location ID: " + location.getId());
         return location;
     }
 }
