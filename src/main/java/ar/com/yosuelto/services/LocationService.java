@@ -28,6 +28,8 @@ public class LocationService {
 
     public Location getLocation(String ip) {
         System.out.println("ip: " + ip);
-        return locationRepository.findByQuery(ip);
+        Location location = locationRepository.findByQuery(ip);
+        System.out.println("location: " + location);
+        return location;
     }
 }
