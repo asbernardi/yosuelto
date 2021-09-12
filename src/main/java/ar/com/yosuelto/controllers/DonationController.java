@@ -7,8 +7,6 @@ import ar.com.yosuelto.repositories.PostulationRepository;
 import ar.com.yosuelto.repositories.PublicationRepository;
 import ar.com.yosuelto.services.ImageService;
 import ar.com.yosuelto.services.LocationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
@@ -36,8 +34,6 @@ public class DonationController {
 
     @Autowired
     private LocationService locationService;
-
-    private Logger logger = LoggerFactory.getLogger(DonationController.class);
 
     @GetMapping("/")
     public String getPublications(Model model) {
@@ -68,12 +64,12 @@ public class DonationController {
         publication.setPublicationDate(Calendar.getInstance());
 
         String remoteAddr = request.getRemoteAddr();
-        System.out.println("Remote address: " + remoteAddr);
 
-        if (locationService.getLocation(remoteAddr) == null) {
-            Location location = locationService.saveLocation(remoteAddr);
-            publication.setLocation(location);
+        Location location = locationService.getLocation(remoteAddr);
+        if (location == null) {
+            location = locationService.saveLocation(remoteAddr);
         }
+        publication.setLocation(location);
 
         // TODO por ahora es necesario guardar la publicacion para tener un ID. Luego con ese ID se puede subir la imagen.
         publicationRepository.save(publication);
