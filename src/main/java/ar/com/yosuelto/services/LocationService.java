@@ -20,8 +20,8 @@ public class LocationService {
     private Logger logger = LoggerFactory.getLogger(LocationService.class);
 
     public Location saveLocation(String ip) {
-        Location location = geoIPClient.getLocation(ip);
         logger.info("IP: " + ip);
+        Location location = geoIPClient.getLocation(ip);
         logger.info("Location: " + location);
         return locationRepository.save(location);
     }
