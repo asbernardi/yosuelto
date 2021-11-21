@@ -33,6 +33,7 @@ CREATE TABLE publication (
     image_url varchar(255),
     publication_date timestamp,
     location_id int8,
+    deleted boolean,
     PRIMARY KEY (id)
 );
 

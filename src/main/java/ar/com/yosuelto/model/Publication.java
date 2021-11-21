@@ -1,11 +1,14 @@
 package ar.com.yosuelto.model;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Entity
+@Where(clause = "deleted is false")
 public class Publication {
 
     @Id
@@ -28,6 +31,9 @@ public class Publication {
 
     @ManyToOne
     private Location location;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean deleted;
 
     public Publication() {
     }
@@ -86,6 +92,14 @@ public class Publication {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public String getPublicationDateSince() {
