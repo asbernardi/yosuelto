@@ -42,10 +42,10 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Yo Suelto</h1>
-                <p class="lead text-muted">Acá podés soltar (donar) todas las cosas que ya no usás más. También podés postularte para recibir cosas que otras personas soltaron. Todo lo que hay en este sitio es gratis.</p>
+                <p class="lead text-muted" th:text="#{main.page.description}">Acá podés soltar (donar) todas las cosas que ya no usás más. También podés postularte para recibir cosas que otras personas soltaron. Todo lo que hay en este sitio es gratis.</p>
                 <p>
-                    <a href="/donacion/donar" class="btn btn-purple my-2">¡Donar ahora!</a>
-                    <a href="#" class="btn btn-secondary my-2">Registrarme</a>
+                    <a href="/donacion/donar" class="btn btn-purple my-2"><span th:text="#{main.page.donate.button}">¡Donar ahora!</span></a>
+                    <a href="#" class="btn btn-secondary my-2"><span th:text="#{main.page.register.button}">Registrarme</span></a>
                 </p>
             </div>
         </div>
@@ -64,12 +64,12 @@
                             <p class="card-text text-truncate" th:text="${publication.description}">Televisor de 20 pulgadas...</p>
                             <p>
                                 <i class="bi bi-geo-alt-fill" style="color:#7952b3;"></i>
-                                <span class="card-text text-truncate" th:text="${publication.location.city} ?: 'Desconocido'">Buenos Aires</span>
+                                <span class="card-text text-truncate" th:text="${publication.location.city} ?: #{main.page.unknown}">Buenos Aires</span>
                             </p>
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-purple" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
+                                    <button type="button" class="btn btn-sm btn-purple" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}"><span th:text="#{main.page.postulate}">¡Postularme!</span></button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted" th:text="${publication.publicationDateSince}">hace 9 minutos</small>
