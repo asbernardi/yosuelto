@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -114,5 +117,20 @@ public class DonationController {
         long donations = publicationRepository.countByEmail(publication.get().getEmail());
         model.addAttribute("donations", donations);
         return "donation";
+    }
+
+    @GetMapping("/favicon.ico")
+    public ResponseEntity<byte[]> getFavicon() {
+        byte[] image = new byte[0];
+
+        try {
+            image = Files.readAllBytes(Paths.get("favicon.ico"));
+            return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
