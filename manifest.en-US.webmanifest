@@ -1,0 +1,41 @@
+{
+  "lang": "en-US",
+  "name": "YoSuelto",
+  "id": "YoSuelto",
+  "short_name": "YoSuelto",
+  "categories": ["social"],
+  "description":
+    "App to donate things you don't use anymore. Some people may donate things. Other people may subscribe to published things they are interested to get.",
+  "icons": [
+    {
+      "src": "/resources/icons/weather_56.png",
+      "type": "image/png",
+      "sizes": "56x56"
+    },
+    {
+      "src": "/resources/icons/weather_112.png",
+      "type": "image/png",
+      "sizes": "112x112"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "orientation": "natural",
+  "b2g_features": {
+    "version": "3.0.0",
+    "core": true,
+    "subtitle": "Get things for free.",
+    "permissions": {
+      "geolocation": {}
+    },
+    "origin": "yosuelto",
+    "developer": {
+      "name": "Coghlaniano",
+      "url": "https://yosuelto.herokuapp.com/"
+    },
+    "chrome": {
+      "statusbar": "overlap"
+    },
+    "focus_color": "#7952b3"
+  }
+}
