@@ -133,4 +133,19 @@ public class DonationController {
 
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/manifest.webmanifest")
+    public ResponseEntity<byte[]> getManifest() {
+        byte[] manifest;
+
+        try {
+            manifest = Files.readAllBytes(Paths.get("manifest.webmanifest"));
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(manifest);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
