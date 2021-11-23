@@ -134,6 +134,36 @@ public class DonationController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/favicon-56x56.png")
+    public ResponseEntity<byte[]> getFavicon56() {
+        byte[] image = new byte[0];
+
+        try {
+            image = Files.readAllBytes(Paths.get("favicon-56x56.png"));
+            return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/favicon-112x112.png")
+    public ResponseEntity<byte[]> getFavicon112() {
+        byte[] image = new byte[0];
+
+        try {
+            image = Files.readAllBytes(Paths.get("favicon-112x112.png"));
+            return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/manifest.webmanifest")
     public ResponseEntity<byte[]> getManifest() {
         byte[] manifest;
