@@ -56,13 +56,13 @@
                 <img src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.imageUrl}" class="bd-placeholder-img card-img-top" width="100%" height="100%" th:alt="${publication.description}" th:title="${publication.description}" loading="lazy"/>
 
                 <div class="card-body">
-                  <label class="form-label">Localidad:</label>
+                  <label class="form-label" th:text="#{donation.page.location}">Localidad:</label>
                   <p>
                     <i class="bi bi-geo-alt-fill" style="color:#7952b3;"></i>
                     <span class="card-text text-truncate" th:text="${publication.location.city} ?: 'Desconocido'">Buenos Aires</span>
                   </p>
 
-                  <label class="form-label">Donación de:</label>
+                  <label class="form-label" th:text="#{donation.page.from}">Donación de:</label>
                   <p class="card-text">
                     <i class="bi bi-heart-fill" style="color:#7952b3;"></i>&nbsp;
                     <span th:text="${donations}">4</span>
@@ -71,7 +71,7 @@
                   </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-purple btn-sm" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}">¡Postularme!</button>
+                      <button type="button" class="btn btn-purple btn-sm" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}" th:text="#{donation.page.apply}">¡Postularme!</button>
                       <a href="/" class="btn btn-sm btn-outline-secondary">Volver</a>
                     </div>
                     <small class="text-muted" th:text="${publication.publicationDateSince}">hace 3 días</small>
@@ -81,7 +81,7 @@
             </div>
             <div class="col">
               <div class="card shadow-sm p-3">
-                <h5 th:if="${not #lists.isEmpty(publication.postulations)}">Personas que se anotaron para recibir esta donación:</h5>
+                <h5 th:if="${not #lists.isEmpty(publication.postulations)}" th:text="#{donation.page.main.text}">Personas que se anotaron para recibir esta donación:</h5>
                 <div th:each="postulation : ${publication.postulations}" th:if="${not #lists.isEmpty(publication.postulations)}">
                   <i class="bi bi-hand-index-thumb-fill" style="color:#7952b3;"></i>
                   <span th:text="${postulation.email}"></span>
@@ -90,7 +90,7 @@
                   <small class="text-muted">)</small>
                 </div>
 
-                <h5 th:if="${#lists.isEmpty(publication.postulations)}">Aún no se anotaron personas para recibir esta donación</h5>
+                <h5 th:if="${#lists.isEmpty(publication.postulations)}" th:text="#{donation.page.empty.applies}">Aún no se anotaron personas para recibir esta donación</h5>
 
               </div>
             </div>
