@@ -103,7 +103,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="postulationModalLabel">Postulación</h5>
+              <h5 class="modal-title" id="postulationModalLabel" th:text="#{donation.page.modal.title}">Postulación</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -119,8 +119,8 @@
               </div>
 
               <div class="modal-footer">
-                <button type="submit" class="btn btn-purple">Postularme</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-purple" th:text="#{donation.page.submit}">Postularme</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{donation.page.cancel}">Cancelar</button>
               </div>
             </form>
           </div>
