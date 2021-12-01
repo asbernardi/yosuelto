@@ -1,41 +1,23 @@
 {
-  "lang": "en-US",
-  "name": "YoSuelto",
-  "id": "YoSuelto",
-  "short_name": "YoSuelto",
-  "categories": ["social"],
-  "description":
-    "App to donate things you don't use anymore. Some people may donate things. Other people may subscribe to published things they are interested to get.",
-  "icons": [
-    {
-      "src": "favicon-56x56.png",
-      "type": "image/png",
-      "sizes": "56x56"
-    },
-    {
-      "src": "favicon-112x112",
-      "type": "image/png",
-      "sizes": "112x112"
+  "version": "1.0.0",
+  "name": "Give and Get",
+  "description": "App to donate things you don't use anymore. Some people may donate things. Other people may subscribe to published things they are interested to get.",
+  "type": "web",
+  "launch_path": "/",
+  "icons": {
+    "56": "/favicon-56x56.png",
+    "112": "/favicon-112x112"
+  },
+  "developer": {
+    "name": "Coghlaniano",
+    "url": "https://giveget.herokuapp.com/"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Give and Get",
+      "subtitle": "Donate what you don't use anymore!",
+      "description": "App to donate things you don't use anymore."
     }
-  ],
-  "start_url": "/",
-  "theme_color": "#ffffff",
-  "orientation": "natural",
-  "b2g_features": {
-    "version": "3.0.0",
-    "core": true,
-    "subtitle": "Donate / receive things for free.",
-    "permissions": {
-      "geolocation": {}
-    },
-    "origin": "yosuelto",
-    "developer": {
-      "name": "Coghlaniano",
-      "url": "https://yosuelto.herokuapp.com/"
-    },
-    "chrome": {
-      "statusbar": "overlap"
-    },
-    "focus_color": "#7952b3"
-  }
+  },
+  "default_locale": "en-US"
 }
