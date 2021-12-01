@@ -111,10 +111,10 @@
               <div class="modal-body">
                 <p>¡Postulate como candidato para recibir esta donación!</p>
                 <input type="hidden" id="publicationId" placeholder="" value="" th:field="*{publicationId}">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label" th:text="#{donation.page.email}">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="you@example.com" required th:field="*{email}">
                 <div class="invalid-feedback">
-                  Por favor dejanos una dirección de correo electrónico, para poder avisarte si te regalaron esta donación.
+                  <span th:text="#{donation.page.email.feedback}">Por favor dejanos una dirección de correo electrónico, para poder avisarte si te regalaron esta donación.</span>
                 </div>
               </div>
 

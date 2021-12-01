@@ -56,7 +56,7 @@
                 <label for="descripcion" class="form-label" th:text="#{donate.page.description}">Descripción</label>
                 <input type="text" class="form-control" id="descripcion" placeholder="" value="" required th:field="*{description}">
                 <div class="invalid-feedback">
-                  Por favor escribi una descripción de lo que estás soltando.
+                  <span th:text="#{donate.page.description.feedback}">Por favor escribi una descripción de lo que estás soltando.</span>
                 </div>
               </div>
 
@@ -64,7 +64,7 @@
                 <label for="email" class="form-label" th:text="#{donate.page.email}">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="vos@yosuelto.com.ar" required th:field="*{email}">
                 <div class="invalid-feedback">
-                  Por favor dejanos una dirección de correo electrónico, para poder escribirte quienes se postularon para recibir tu suelta.
+                  <span th:text="#{donate.page.email.feedback}">Por favor dejanos una dirección de correo electrónico, para poder escribirte quienes se postularon para recibir tu suelta.</span>
                 </div>
               </div>
 
@@ -72,7 +72,7 @@
                 <label for="formFile" class="form-label" th:text="#{donate.page.picture}">Foto de tu suelta</label>
                 <input class="form-control" type="file" id="formFile" name="formFile" required>
                 <div class="invalid-feedback">
-                  Por favor dejanos una foto de lo que soltás, así las personas pueden ver como es.
+                  <span th:text="#{donate.page.picture.feedback}">Por favor dejanos una foto de lo que soltás, así las personas pueden ver como es.</span>
                 </div>
               </div>
 
