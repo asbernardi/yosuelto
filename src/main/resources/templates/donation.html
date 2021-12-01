@@ -109,7 +109,7 @@
 
             <form class="needs-validation" novalidate action="#" th:action="@{/donacion/postular}" th:object="${postulation}" method="post">
               <div class="modal-body">
-                <p>¡Postulate como candidato para recibir esta donación!</p>
+                <p th:text="#{donation.page.modal.main.text}">¡Postulate como candidato para recibir esta donación!</p>
                 <input type="hidden" id="publicationId" placeholder="" value="" th:field="*{publicationId}">
                 <label for="email" class="form-label" th:text="#{donation.page.email}">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="you@example.com" required th:field="*{email}">
