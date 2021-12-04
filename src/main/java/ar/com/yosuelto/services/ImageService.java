@@ -74,6 +74,7 @@ public class ImageService {
                 return "http://localhost:8080/donacion/imagen/" + publication.getId() + ".jpg";
             } else {
                 String url = cloudinary.api().resource(publication.getId().toString(), ObjectUtils.emptyMap()).get("secure_url").toString();
+                url.replaceFirst("http://", "https://");
                 return url;
             }
         } catch (Exception e) {
