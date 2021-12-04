@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 
 @Service
 public class ImageService {
@@ -74,8 +73,7 @@ public class ImageService {
                 // TODO reemplazar .jpg
                 return "http://localhost:8080/donacion/imagen/" + publication.getId() + ".jpg";
             } else {
-                Map options = ObjectUtils.asMap("secure","true");
-                String url = cloudinary.api().resource(publication.getId().toString(), options).get("url").toString();
+                String url = cloudinary.api().resource(publication.getId().toString(), ObjectUtils.emptyMap()).get("secure_url").toString();
                 return url;
             }
         } catch (Exception e) {
