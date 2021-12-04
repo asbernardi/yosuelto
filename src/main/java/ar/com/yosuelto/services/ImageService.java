@@ -74,8 +74,7 @@ public class ImageService {
                 // TODO reemplazar .jpg
                 return "http://localhost:8080/donacion/imagen/" + publication.getId() + ".jpg";
             } else {
-                Map options = ObjectUtils.emptyMap();
-                options.put("secure", true);
+                Map options = ObjectUtils.asMap("secure","true");
                 String url = cloudinary.api().resource(publication.getId().toString(), options).get("url").toString();
                 return url;
             }
