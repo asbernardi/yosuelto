@@ -26,5 +26,5 @@
   "permissions": {
     "mobiledata":{},
     "wifidata":{}
-  },
+  }
 }
