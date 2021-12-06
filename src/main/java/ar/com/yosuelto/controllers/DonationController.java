@@ -164,13 +164,28 @@ public class DonationController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/manifest.webmanifest")
+    @GetMapping(value = "/manifest.webapp")
     public ResponseEntity<byte[]> getManifest() {
         byte[] manifest;
 
         try {
-            manifest = Files.readAllBytes(Paths.get("manifest.webmanifest"));
-            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(manifest);
+            manifest = Files.readAllBytes(Paths.get("manifest.webapp"));
+            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(manifest);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping(value = "/manifest.en-US.webapp")
+    public ResponseEntity<byte[]> getManifestEnUs() {
+        byte[] manifest;
+
+        try {
+            manifest = Files.readAllBytes(Paths.get("manifest.en-US.webapp"));
+            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(manifest);
         } catch (IOException e) {
             // TODO replace with log:
             e.printStackTrace();

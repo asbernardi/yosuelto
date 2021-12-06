@@ -19,5 +19,12 @@
       "description": "App to donate things you don't use anymore."
     }
   },
-  "default_locale": "en-US"
+  "default_locale": "en-US",
+  "categories": [
+    "social"
+  ],
+  "permissions": {
+    "mobiledata":{},
+    "wifidata":{}
+  },
 }
