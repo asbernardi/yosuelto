@@ -102,18 +102,33 @@ public class Publication {
         this.deleted = deleted;
     }
 
+    public String getPublicationDateSinceKey() {
+        Calendar now = Calendar.getInstance();
+        long diff = now.getTimeInMillis() - publicationDate.getTimeInMillis();
+
+        if (diff < 60000) {
+            return "general.publication.date.since.seconds";
+        } else if (diff < 3600000) {
+            return "general.publication.date.since.minutes";
+        } else if (diff < 86400000) {
+            return "general.publication.date.since.hours";
+        } else {
+            return "general.publication.date.since.days";
+        }
+    }
+
     public String getPublicationDateSince() {
         Calendar now = Calendar.getInstance();
         long diff = now.getTimeInMillis() - publicationDate.getTimeInMillis();
 
         if (diff < 60000) {
-            return "hace segundos";
+            return "";
         } else if (diff < 3600000) {
-            return "hace " + TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS) + " minutos";
+            return String.valueOf(TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS));
         } else if (diff < 86400000) {
-            return "hace " + TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) + " horas";
+            return String.valueOf(TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS));
         } else {
-            return "hace " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + " días";
+            return String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         }
     }
 

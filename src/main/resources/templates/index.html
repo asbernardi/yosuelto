@@ -72,7 +72,7 @@
                                     <button type="button" class="btn btn-sm btn-purple" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}"><span th:text="#{main.page.postulate}">¡Postularme!</span></button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-muted" th:text="${publication.publicationDateSince}">hace 9 minutos</small>
+                                <small class="text-muted" th:text="#{${publication.publicationDateSinceKey}(${publication.publicationDateSince})}">hace 9 minutos</small>
                             </div>
                         </div>
                     </div>
