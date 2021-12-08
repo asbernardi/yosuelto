@@ -78,6 +78,10 @@ public class Publication {
         this.imageUrl = imageUrl;
     }
 
+    public String getOptimizedImageUrl() {
+        return this.imageUrl.replace("upload/", "upload/c_lpad,h_225,q_100,w_348/");
+    }
+
     public List<Postulation> getPostulations() {
         return postulations;
     }
