@@ -79,12 +79,12 @@ public class Publication {
     }
 
     public String getOptimizedImageUrlWebp() {
-        String jpgImage = this.imageUrl.replace("upload/", "upload/c_lpad,h_225,q_100,w_348/");
+        String jpgImage = this.imageUrl.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
         return jpgImage.replace(".jpg", ".webp");
     }
 
     public String getOptimizedImageUrl() {
-        return this.imageUrl.replace("upload/", "upload/c_lpad,h_225,q_100,w_348/");
+        return this.imageUrl.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
     }
 
     public List<Postulation> getPostulations() {
