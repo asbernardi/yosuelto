@@ -1,9 +1,1 @@
-.bg-purple {
-  background-color:#7952b3!important;
-}
-
-.btn-purple {
-  color:#fff;
-  background-color:#7952b3;
-  border-color:#7952b3;
-}
+# Unused CSS. This was removed to improve performance in production.
