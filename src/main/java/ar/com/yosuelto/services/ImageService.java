@@ -73,11 +73,11 @@ public class ImageService {
             if ("LOCAL".equalsIgnoreCase(env.getProperty("yosuelto.upload.location"))) {
                 // TODO reemplazar .jpg
                 return "http://localhost:8080/donacion/imagen/" + publication.getId() + ".jpg";
+            } else {
+                Map options = ObjectUtils.asMap("secure","true");
+                String url = cloudinary.api().resource(publication.getId().toString(), options).get("secure_url").toString();
+                return url;
             }
-
-            Map options = ObjectUtils.asMap("secure","true");
-            String url = cloudinary.api().resource(publication.getId().toString(), options).get("secure_url").toString();
-            return url;
         } catch (Exception e) {
             // TODO loguear bien
             e.printStackTrace();
