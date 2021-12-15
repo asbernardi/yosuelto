@@ -109,7 +109,7 @@ public class DonationController {
 
     @GetMapping("/donacion/{url}")
     public String getDonationPage(@PathVariable String url, Model model) {
-        String id = url.substring(url.lastIndexOf("-")+1, url.length());
+        String id = url.substring(url.lastIndexOf("-")+1);
         Optional<Publication> publication = publicationRepository.findById(new Long(id));
         model.addAttribute("publication", publication.get());
         model.addAttribute("postulation", new Postulation());
