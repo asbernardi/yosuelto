@@ -145,6 +145,7 @@ public class Publication {
         return description
                 .replace(" ", "-")
                 .replace("?", "")
+                .replace("/", "")
                 .toLowerCase()
                 .concat("-")
                 .concat(id.toString());
