@@ -78,9 +78,10 @@ public class DonationController {
         publicationRepository.save(publication);
 
         imageService.upload(publication, formFile);
-        String url = imageService.getImageUrl(publication);
 
+        String url = imageService.getImageUrl(publication);
         publication.setImageUrl(url);
+
         publicationRepository.save(publication);
 
         model.addAttribute("publications", publicationRepository.findAll());

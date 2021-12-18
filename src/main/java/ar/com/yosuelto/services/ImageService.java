@@ -76,7 +76,8 @@ public class ImageService {
             } else {
                 Map options = ObjectUtils.asMap("secure","true");
                 String url = cloudinary.api().resource(publication.getId().toString(), options).get("secure_url").toString();
-                return url;
+                url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
+                return url.replace(".jpg", ".webp");
             }
         } catch (Exception e) {
             // TODO loguear bien
