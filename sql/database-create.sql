@@ -31,6 +31,7 @@ CREATE TABLE publication (
     description varchar(255),
     email varchar(255),
     image_url varchar(255),
+    optimized_image_url varchar(255),
     publication_date timestamp,
     location_id int8,
     deleted boolean,

@@ -26,6 +26,9 @@ public class Publication {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "optimized_image_url")
+    private String optimizedImageUrl;
+
     @OneToMany(mappedBy = "publication")
     private List<Postulation> postulations;
 
@@ -76,6 +79,14 @@ public class Publication {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getOptimizedImageUrl() {
+        return optimizedImageUrl;
+    }
+
+    public void setOptimizedImageUrl(String optimizedImageUrl) {
+        this.optimizedImageUrl = optimizedImageUrl;
     }
 
     public List<Postulation> getPostulations() {

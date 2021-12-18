@@ -38,8 +38,8 @@ public class ImageService {
     }
 
     private void localUpload(Publication publication, MultipartFile formFile) {
-        // TODO quitar hardcodeo de JPG:
-        Path absolutePath = Paths.get(FILES_PATH + publication.getId() + ".jpg").toAbsolutePath();
+        String extension = formFile.getOriginalFilename().substring(formFile.getOriginalFilename().indexOf("."));
+        Path absolutePath = Paths.get(FILES_PATH + publication.getId() + extension).toAbsolutePath();
         try {
             formFile.transferTo(absolutePath);
         } catch (IOException e) {
@@ -68,14 +68,29 @@ public class ImageService {
         return null;
     }
 
-    public String getImageUrl(Publication publication) {
+    public String getImageUrl(Publication publication, String extension) {
         try {
             if ("LOCAL".equalsIgnoreCase(env.getProperty("yosuelto.upload.location"))) {
-                // TODO reemplazar .jpg
-                return "http://localhost:8080/donacion/imagen/" + publication.getId() + ".jpg";
+                return "http://localhost:8080/donacion/imagen/" + publication.getId() + extension;
             } else {
                 Map options = ObjectUtils.asMap("secure","true");
                 String url = cloudinary.api().resource(publication.getId().toString(), options).get("secure_url").toString();
+                return url;
+            }
+        } catch (Exception e) {
+            // TODO loguear bien
+            e.printStackTrace();
+        }
+        // TODO devolver imagen generica si hubo un error.
+        return null;
+    }
+
+    public String getOptimizedImageUrl(Publication publication, String extension) {
+        try {
+            if ("LOCAL".equalsIgnoreCase(env.getProperty("yosuelto.upload.location"))) {
+                return "http://localhost:8080/donacion/imagen/" + publication.getId() + extension;
+            } else {
+                String url = publication.getImageUrl();
                 url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
                 return url.replace(".jpg", ".webp");
             }

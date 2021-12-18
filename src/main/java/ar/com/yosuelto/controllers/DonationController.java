@@ -79,8 +79,10 @@ public class DonationController {
 
         imageService.upload(publication, formFile);
 
-        String url = imageService.getImageUrl(publication);
+        String url = imageService.getImageUrl(publication, formFile.getOriginalFilename().substring(formFile.getOriginalFilename().indexOf(".")));
         publication.setImageUrl(url);
+        String optimizedImageUrl = imageService.getOptimizedImageUrl(publication, formFile.getOriginalFilename().substring(formFile.getOriginalFilename().indexOf(".")));
+        publication.setOptimizedImageUrl(optimizedImageUrl);
 
         publicationRepository.save(publication);
 

@@ -63,7 +63,7 @@
                 <div class="col" th:each="publication : ${publications}">
                     <div class="card shadow-sm">
                         <a th:href="@{'/donacion/'+${publication.url}}">
-                            <img class="card-img-top" src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.imageUrl}"/>
+                            <img class="card-img-top" src="http://localhost:8080/donacion/imagen/1.webp" th:src="${publication.optimizedImageUrl}"/>
                         </a>
                         <div class="card-body">
                             <p class="card-text text-truncate" th:text="${publication.description}">Televisor de 20 pulgadas...</p>
