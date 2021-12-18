@@ -48,12 +48,24 @@
 <main>
 
     <section class="text-center container">
-        <div class="row py-lg-5">
+        <div class="row py-lg-3">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <a href="/donacion/donar" class="btn btn-purple my-2"><span th:text="#{main.page.donate.button}">¡Donar ahora!</span></a>
                 <!-- <a href="#" class="btn btn-secondary my-2"><span th:text="#{main.page.register.button}">Registrarme</span></a> -->
             </div>
         </div>
+        <form th:action="@{/}" method="post" th:object="${location}">
+            <div class="row py-lg-3">
+                <div class="col-sm-4 col-md-4">
+                    <select class="form-select" th:field="*{country}">
+                        <option th:each="country : ${countries}" th:value="${country}" th:text="${country}" th:selected="${country==location.country}"></option>
+                    </select>
+                </div>
+                <div class="col-sm-1 col-md-1">
+                    <button type="submit" class="btn btn-purple"><span th:text="#{main.page.country.submit.button}">Go!</span></button>
+                </div>
+            </div>
+        </form>
     </section>
 
     <div class="album bg-light">

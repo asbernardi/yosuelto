@@ -7,6 +7,7 @@ import ar.com.yosuelto.repositories.PostulationRepository;
 import ar.com.yosuelto.repositories.PublicationRepository;
 import ar.com.yosuelto.services.ImageService;
 import ar.com.yosuelto.services.LocationService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
@@ -20,12 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class DonationController {
 
+    public static final String ANY_COUNTRY = "Any country";
     @Autowired
     private PublicationRepository publicationRepository;
 
@@ -41,6 +45,26 @@ public class DonationController {
     @GetMapping("/")
     public String getPublications(Model model) {
         model.addAttribute("publications", publicationRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        model.addAttribute("location", new Location());
+        model.addAttribute("countries", getCountries());
+        model.addAttribute("postulation", new Postulation());
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String getPublicationsByCountry(@ModelAttribute Location location, Model model) {
+        List<Publication> publications;
+
+        String country = location.getCountry();
+        if (Strings.isEmpty(country) || ANY_COUNTRY.equals(country)) {
+            publications = publicationRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        } else {
+            publications = publicationRepository.findByLocationCountry(country, Sort.by(Sort.Direction.ASC, "id"));
+        }
+
+        model.addAttribute("publications", publications);
+        model.addAttribute("location", location);
+        model.addAttribute("countries", getCountries());
         model.addAttribute("postulation", new Postulation());
         return "index";
     }
@@ -195,5 +219,10 @@ public class DonationController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    private List<String> getCountries() {
+        List<String> countries = Arrays.asList(ANY_COUNTRY, "Hong Kong", "South Africa", "India", "Argentina");
+        return countries;
     }
 }
