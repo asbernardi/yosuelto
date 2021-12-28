@@ -21,7 +21,6 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 	implementation 'com.cloudinary:cloudinary-http44:1.29.0'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.3'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
