@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -135,7 +137,8 @@ public class DonationController {
     }
 
     @GetMapping("/donacion/{url}")
-    public String getDonationPage(@PathVariable String url, Model model) {
+    public String getDonationPage(@PathVariable String url, Model model, @AuthenticationPrincipal OAuth2User principal) {
+        System.out.println("Name: " + principal.getAttribute("name"));
         String id = url.substring(url.lastIndexOf("-")+1);
         Optional<Publication> publication = publicationRepository.findById(new Long(id));
         model.addAttribute("publication", publication.get());
