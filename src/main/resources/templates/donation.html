@@ -81,7 +81,7 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-purple btn-sm" data-bs-toggle="modal" data-bs-target="#postulationModal" th:attr="data-bs-donation-id=${publication.id}" th:text="#{donation.page.apply}">¡Postularme!</button>
-                      <a href="/" class="btn btn-sm btn-outline-secondary">Volver</a>
+                      <a href="/" class="btn btn-sm btn-outline-secondary" th:text="#{donation.page.back}">Volver</a>
                     </div>
                     <small class="text-muted" th:text="#{${publication.publicationDateSinceKey}(${publication.publicationDateSince})}">hace 3 días</small>
                   </div>
