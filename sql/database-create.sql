@@ -35,8 +35,19 @@ CREATE TABLE publication (
     publication_date timestamp,
     location_id int8,
     deleted boolean,
+    reports integer default 0,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE report (
+    id  bigserial not null,
+    publication_id int8,
+    detail varchar(255),
+    report_date timestamp,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE report ADD CONSTRAINT report_publication_id_publication_id FOREIGN KEY (publication_id) REFERENCES publication;
 
 ALTER TABLE postulation ADD CONSTRAINT FKgrm1t6vgpp0ofw5yt6r9yafdn FOREIGN KEY (publication_id) REFERENCES publication;
 

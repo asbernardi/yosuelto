@@ -3,8 +3,10 @@ package ar.com.yosuelto.controllers;
 import ar.com.yosuelto.model.Location;
 import ar.com.yosuelto.model.Postulation;
 import ar.com.yosuelto.model.Publication;
+import ar.com.yosuelto.model.Report;
 import ar.com.yosuelto.repositories.PostulationRepository;
 import ar.com.yosuelto.repositories.PublicationRepository;
+import ar.com.yosuelto.repositories.ReportRepository;
 import ar.com.yosuelto.services.ImageService;
 import ar.com.yosuelto.services.LocationService;
 import org.apache.logging.log4j.util.Strings;
@@ -30,11 +32,16 @@ import java.util.Optional;
 public class DonationController {
 
     public static final String ANY_COUNTRY = "Any country";
+    private static final int REPORT_LIMIT = 5;
+
     @Autowired
     private PublicationRepository publicationRepository;
 
     @Autowired
     private PostulationRepository postulationRepository;
+
+    @Autowired
+    private ReportRepository reportRepository;
 
     @Autowired
     private ImageService imageService;
@@ -44,10 +51,11 @@ public class DonationController {
 
     @GetMapping("/")
     public String getPublications(Model model) {
-        model.addAttribute("publications", publicationRepository.findAll(Sort.by(Sort.Direction.ASC, "id")));
+        model.addAttribute("publications", publicationRepository.findByReportsLessThan(REPORT_LIMIT, Sort.by(Sort.Direction.ASC, "id")));
         model.addAttribute("location", new Location());
         model.addAttribute("countries", getCountries());
         model.addAttribute("postulation", new Postulation());
+        model.addAttribute("report", new Report());
         return "index";
     }
 
@@ -57,9 +65,9 @@ public class DonationController {
 
         String country = location.getCountry();
         if (Strings.isEmpty(country) || ANY_COUNTRY.equals(country)) {
-            publications = publicationRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+            publications = publicationRepository.findByReportsLessThan(5, Sort.by(Sort.Direction.ASC, "id"));
         } else {
-            publications = publicationRepository.findByLocationCountry(country, Sort.by(Sort.Direction.ASC, "id"));
+            publications = publicationRepository.findByLocationCountryAndReportsLessThan(country, 5, Sort.by(Sort.Direction.ASC, "id"));
         }
 
         model.addAttribute("publications", publications);
@@ -110,7 +118,7 @@ public class DonationController {
 
         publicationRepository.save(publication);
 
-        model.addAttribute("publications", publicationRepository.findAll());
+        model.addAttribute("publications", publicationRepository.findByReportsLessThan(5));
         return "redirect:/";
     }
 
@@ -130,7 +138,28 @@ public class DonationController {
         postulation.setPostulationDate(Calendar.getInstance());
         postulationRepository.save(postulation);
 
-        model.addAttribute("publications", publicationRepository.findAll());
+        model.addAttribute("publications", publicationRepository.findByReportsLessThan(REPORT_LIMIT));
+        return "redirect:/";
+    }
+
+    @PostMapping("/donacion/denunciar")
+    public String postPostulation(@ModelAttribute Report report, Model model) {
+        if (report.getPublicationId() == null) {
+            // TODO ¿Mostrar mensaje de error en pagina principal?
+            return "redirect:/";
+        }
+
+        // TODO validar que no haya denunciado previamente el mismo usuario, a la misma publicacion.
+
+        Publication publication = publicationRepository.getOne(report.getPublicationId());
+        publication.addReport();
+        publicationRepository.save(publication);
+
+        report.setPublication(publication);
+        report.setReportDate(Calendar.getInstance());
+        reportRepository.save(report);
+
+        model.addAttribute("publications", publicationRepository.findByReportsLessThan(REPORT_LIMIT));
         return "redirect:/";
     }
 

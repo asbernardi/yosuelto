@@ -38,6 +38,10 @@ public class Publication {
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
+    // Amount of times this publication was reported (fraud).
+    @Column(columnDefinition = "integer default 0")
+    private int reports;
+
     public Publication() {
     }
 
@@ -153,4 +157,7 @@ public class Publication {
                 .concat(id.toString());
     }
 
+    public void addReport() {
+        this.reports += 1;
+    }
 }

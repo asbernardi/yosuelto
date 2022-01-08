@@ -90,6 +90,9 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted" th:text="#{${publication.publicationDateSinceKey}(${publication.publicationDateSince})}">hace 9 minutos</small>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm" th:title="#{main.page.report.button.title}" data-bs-toggle="modal" data-bs-target="#reportModal" th:attr="data-bs-donation-id=${publication.id}"><i class="bi bi-flag-fill" style="color:red;"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +101,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Postulation Modal -->
     <div class="modal fade" id="postulationModal" tabindex="-1" aria-labelledby="postulationModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -127,6 +130,35 @@
         </div>
     </div>
 
+    <!-- Report Modal -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel" th:text="#{main.page.report.modal.title}">Report</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form class="needs-validation" novalidate action="#" th:action="@{/donacion/denunciar}" th:object="${report}" method="post">
+                    <div class="modal-body">
+                        <p th:text="#{main.page.report.modal.description}">Por favor, contanos por qué motivo estas reportando esta donacion.</p>
+                        <input type="hidden" id="reportPublicationId" placeholder="" value="" th:field="*{publicationId}">
+                        <label for="detail" class="form-label">Detail</label>
+                        <input type="text" class="form-control" id="detail" placeholder="Please tell us why you are reporting this donation." required th:field="*{detail}">
+                        <div class="invalid-feedback">
+                            <span th:text="#{main.page.report.modal.invalid.detail}">Por favor dejanos un motivo por el cual estas reportando esta donacion.</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-purple"><span th:text="#{main.page.report.modal.report.button}">Denunciar</span></button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><span th:text="#{main.page.report.modal.cancel.button}">Cancelar</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <footer th:replace="footer :: footer"></footer>
@@ -140,8 +172,18 @@
       var button = event.relatedTarget
       // Extract info from data-bs-* attributes
       var donationId = button.getAttribute('data-bs-donation-id')
-
       document.getElementById('publicationId').value = donationId
+    })
+</script>
+
+<script>
+    var reportModal = document.getElementById('reportModal')
+    reportModal.addEventListener('show.bs.modal', function (event) {
+      // Button that triggered the modal
+      var button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      var donationId = button.getAttribute('data-bs-donation-id')
+      document.getElementById('reportPublicationId').value = donationId
     })
 </script>
 
