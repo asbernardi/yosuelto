@@ -93,11 +93,11 @@ public class ImageService {
         } else if ("cloudinary".equalsIgnoreCase(environment) && webpFormat){
             String url = publication.getImageUrl();
             url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
-            return url.replace(url.substring(url.indexOf(".")), ".webp");
+            return url.replace(url.substring(url.lastIndexOf(".")), ".webp");
         } else if ("cloudinary".equalsIgnoreCase(environment) && !webpFormat) {
             String url = publication.getImageUrl();
             url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
-            return url.replace(url.substring(url.indexOf(".")), ".jpg");
+            return url.replace(url.substring(url.lastIndexOf(".")), ".jpg");
         } else {
             // TODO devolver imagen generica si hubo un error.
         }
