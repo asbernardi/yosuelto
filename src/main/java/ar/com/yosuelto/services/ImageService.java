@@ -88,13 +88,13 @@ public class ImageService {
     public String getOptimizedImageUrl(Publication publication, String extension, boolean webpFormat) {
         String environment = env.getProperty("yosuelto.upload.location");
 
-        if ("LOCAL".equalsIgnoreCase(environment)) {
+        if ("local".equalsIgnoreCase(environment)) {
             return "http://localhost:8080/donacion/imagen/" + publication.getId() + extension;
-        } else if ("PROD".equalsIgnoreCase(environment) && webpFormat){
+        } else if ("cloudinary".equalsIgnoreCase(environment) && webpFormat){
             String url = publication.getImageUrl();
             url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
             return url.replace(url.substring(url.indexOf(".")), ".webp");
-        } else if ("PROD".equalsIgnoreCase(environment) && !webpFormat) {
+        } else if ("cloudinary".equalsIgnoreCase(environment) && !webpFormat) {
             String url = publication.getImageUrl();
             url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
             return url.replace(url.substring(url.indexOf(".")), ".jpg");
