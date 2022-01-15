@@ -256,6 +256,36 @@ public class DonationController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping(value = "/manifest.es-AR.webapp")
+    public ResponseEntity<byte[]> getManifestEsAr() {
+        byte[] manifest;
+
+        try {
+            manifest = Files.readAllBytes(Paths.get("manifest.es-AR.webapp"));
+            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(manifest);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping(value = "/app-ads.txt")
+    public ResponseEntity<byte[]> getAppAds() {
+        byte[] appAdsFile;
+
+        try {
+            appAdsFile = Files.readAllBytes(Paths.get("app-ads.txt"));
+            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(appAdsFile);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
     private List<String> getCountries() {
         List<String> countries = Arrays.asList(ANY_COUNTRY, "Hong Kong", "South Africa", "India", "Argentina");
         return countries;
