@@ -92,11 +92,11 @@ public class ImageService {
             return "http://localhost:8080/donacion/imagen/" + publication.getId() + extension;
         } else if ("cloudinary".equalsIgnoreCase(environment) && webpFormat){
             String url = publication.getImageUrl();
-            url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
+            url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_215/");
             return url.replace(url.substring(url.lastIndexOf(".")), ".webp");
         } else if ("cloudinary".equalsIgnoreCase(environment) && !webpFormat) {
             String url = publication.getImageUrl();
-            url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
+            url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_215/");
             return url.replace(url.substring(url.lastIndexOf(".")), ".jpg");
         } else {
             // TODO devolver imagen generica si hubo un error.
