@@ -85,20 +85,23 @@ public class ImageService {
         return null;
     }
 
-    public String getOptimizedImageUrl(Publication publication, String extension) {
-        try {
-            if ("LOCAL".equalsIgnoreCase(env.getProperty("yosuelto.upload.location"))) {
-                return "http://localhost:8080/donacion/imagen/" + publication.getId() + extension;
-            } else {
-                String url = publication.getImageUrl();
-                url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
-                return url.replace(".jpg", ".webp");
-            }
-        } catch (Exception e) {
-            // TODO loguear bien
-            e.printStackTrace();
+    public String getOptimizedImageUrl(Publication publication, String extension, boolean webpFormat) {
+        String environment = env.getProperty("yosuelto.upload.location");
+
+        if ("LOCAL".equalsIgnoreCase(environment)) {
+            return "http://localhost:8080/donacion/imagen/" + publication.getId() + extension;
+        } else if ("PROD".equalsIgnoreCase(environment) && webpFormat){
+            String url = publication.getImageUrl();
+            url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
+            return url.replace(url.substring(url.indexOf(".")), ".webp");
+        } else if ("PROD".equalsIgnoreCase(environment) && !webpFormat) {
+            String url = publication.getImageUrl();
+            url = url.replace("upload/", "upload/c_lpad,h_225,q_80,w_348/");
+            return url.replace(url.substring(url.indexOf(".")), ".jpg");
+        } else {
+            // TODO devolver imagen generica si hubo un error.
         }
-        // TODO devolver imagen generica si hubo un error.
+
         return null;
     }
 }

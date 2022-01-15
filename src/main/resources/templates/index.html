@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
+    <meta name="theme-color" content="rgb(255, 255, 255)">
     <title>Give&Get - Donate what you don't use anymore!</title>
 
     <link rel="canonical" href="https://giveget.herokuapp.com/">
@@ -75,7 +76,9 @@
                 <div class="col" th:each="publication : ${publications}">
                     <div class="card shadow-sm">
                         <a th:href="@{'/donacion/'+${publication.url}}">
-                            <img class="card-img-top" src="http://localhost:8080/donacion/imagen/1.webp" th:src="${publication.optimizedImageUrl}"/>
+                            <object type="image/webp" data="http://localhost:8080/donacion/imagen/1.webp" th:attr="data=${publication.optimizedImageUrl}">
+                                <img class="card-img-top" src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.optimizedImageUrlJpg}"/>
+                            </object>
                         </a>
                         <div class="card-body">
                             <p class="card-text text-truncate" th:text="${publication.description}">Televisor de 20 pulgadas...</p>

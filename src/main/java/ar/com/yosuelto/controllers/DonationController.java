@@ -111,10 +111,16 @@ public class DonationController {
 
         imageService.upload(publication, formFile);
 
-        String url = imageService.getImageUrl(publication, formFile.getOriginalFilename().substring(formFile.getOriginalFilename().indexOf(".")));
+        String extension = formFile.getOriginalFilename().substring(formFile.getOriginalFilename().indexOf("."));
+
+        String url = imageService.getImageUrl(publication, extension);
         publication.setImageUrl(url);
-        String optimizedImageUrl = imageService.getOptimizedImageUrl(publication, formFile.getOriginalFilename().substring(formFile.getOriginalFilename().indexOf(".")));
+
+        String optimizedImageUrl = imageService.getOptimizedImageUrl(publication, extension, true);
         publication.setOptimizedImageUrl(optimizedImageUrl);
+
+        String optimizedImageUrlJpg = imageService.getOptimizedImageUrl(publication, extension, false);
+        publication.setOptimizedImageUrlJpg(optimizedImageUrlJpg);
 
         publicationRepository.save(publication);
 

@@ -29,6 +29,9 @@ public class Publication {
     @Column(name = "optimized_image_url")
     private String optimizedImageUrl;
 
+    @Column(name = "optimized_image_url")
+    private String optimizedImageUrlJpg;
+
     @OneToMany(mappedBy = "publication")
     private List<Postulation> postulations;
 
@@ -91,6 +94,14 @@ public class Publication {
 
     public void setOptimizedImageUrl(String optimizedImageUrl) {
         this.optimizedImageUrl = optimizedImageUrl;
+    }
+
+    public String getOptimizedImageUrlJpg() {
+        return optimizedImageUrlJpg;
+    }
+
+    public void setOptimizedImageUrlJpg(String optimizedImageUrlJpg) {
+        this.optimizedImageUrlJpg = optimizedImageUrlJpg;
     }
 
     public List<Postulation> getPostulations() {
@@ -160,4 +171,5 @@ public class Publication {
     public void addReport() {
         this.reports += 1;
     }
+
 }
