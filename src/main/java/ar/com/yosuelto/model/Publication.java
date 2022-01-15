@@ -29,7 +29,7 @@ public class Publication {
     @Column(name = "optimized_image_url")
     private String optimizedImageUrl;
 
-    @Column(name = "optimized_image_url")
+    @Column(name = "optimized_image_url_jpg")
     private String optimizedImageUrlJpg;
 
     @OneToMany(mappedBy = "publication")
