@@ -55,7 +55,10 @@
                 <!-- <a href="#" class="btn btn-secondary my-2"><span th:text="#{main.page.register.button}">Registrarme</span></a> -->
             </div>
         </div>
-        <form th:action="@{/}" method="post" th:object="${location}">
+
+        <div id='ad-container'></div>
+
+        <!-- <form th:action="@{/}" method="post" th:object="${location}">
             <div class="row py-lg-3">
                 <div class="col-sm-4 col-md-4">
                     <select class="form-select" th:field="*{country}">
@@ -66,7 +69,7 @@
                     <button type="submit" class="btn btn-purple"><span th:text="#{main.page.country.submit.button}">Go!</span></button>
                 </div>
             </div>
-        </form>
+        </form> -->
     </section>
 
     <div class="album bg-light">
@@ -211,6 +214,51 @@
           }, false)
         })
     })()
+</script>
+
+<script src="https://static.kaiads.com/ads-sdk/ads-sdk.v5.min.js"></script>
+
+<script>
+    // request an ad when the DOM is loaded
+    document.addEventListener("DOMContentLoaded", () => {
+        getKaiAd( config )
+    });
+
+    getKaiAd({
+        publisher: '4c63a196-4c9c-4d68-bf6e-ec7fb9f207b3',
+        app: 'GiveAndGet',
+        slot: 'indexPage',
+
+        h: 264,
+        w: 240,
+
+        // Max supported size is 240x264
+        // container is required for responsive ads
+        container: document.getElementById('ad-container'),
+        onerror: err => console.error('Custom catch:', err),
+        onready: ad => {
+
+            // Ad is ready to be displayed
+            // calling 'display' will display the ad
+            ad.call('display', {
+
+                // In KaiOS the app developer is responsible
+                // for user navigation, and can provide
+                // navigational className and/or a tabindex
+                tabindex: 0,
+
+                // if the application is using
+                // a classname to navigate
+                // this classname will be applied
+                // to the container
+                navClass: 'items',
+
+                // display style will be applied
+                // to the container block or inline-block
+                display: 'block',
+            })
+        }
+    })
 </script>
 
 </body>
