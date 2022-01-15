@@ -13,10 +13,10 @@
     "url": "https://giveget.herokuapp.com/"
   },
   "locales": {
-    "en-US": {
+    "es-AR": {
       "name": "Give and Get",
-      "subtitle": "Donate what you don't use anymore!",
-      "description": "App to donate things you don't use anymore."
+      "subtitle": "¡Doná lo que no usás, obtené lo que necesitás!",
+      "description": "App para donar cosas que ya no usás, y también poder recibir cosas que necesitás."
     }
   },
   "default_locale": "es-AR",
