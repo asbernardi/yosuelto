@@ -20,7 +20,7 @@
     }
   },
   "default_locale": "es-AR",
-  "cursor": "true",
+  "cursor": true,
   "categories": [
     "social"
   ],
