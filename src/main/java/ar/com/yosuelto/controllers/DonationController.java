@@ -228,46 +228,36 @@ public class DonationController {
 
     @GetMapping(value = "/manifest.webapp")
     public ResponseEntity<byte[]> getManifest() {
-        byte[] manifest;
+        return getManifest("manifest.webapp");
+    }
 
-        try {
-            manifest = Files.readAllBytes(Paths.get("manifest.webapp"));
-            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(manifest);
-        } catch (IOException e) {
-            // TODO replace with log:
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.notFound().build();
+    @GetMapping(value = "/manifest.webmanifest")
+    public ResponseEntity<byte[]> getManifest3() {
+        return getManifest("manifest.webmanifest");
     }
 
     @GetMapping(value = "/manifest.en-US.webapp")
     public ResponseEntity<byte[]> getManifestEnUs() {
-        byte[] manifest;
+        return getManifest("manifest.en-US.webapp");
+    }
 
-        try {
-            manifest = Files.readAllBytes(Paths.get("manifest.en-US.webapp"));
-            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(manifest);
-        } catch (IOException e) {
-            // TODO replace with log:
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.notFound().build();
+    @GetMapping(value = "/manifest.en-US.webmanifest")
+    public ResponseEntity<byte[]> getManifest3EnUS() {
+        return getManifest("manifest.en-US.webmanifest");
     }
 
     @GetMapping(value = "/manifest.es-AR.webapp")
     public ResponseEntity<byte[]> getManifestEsAr() {
-        byte[] manifest;
+        return getManifest("manifest.es-AR.webapp");
+    }
 
+    private ResponseEntity<byte[]> getManifest(String manifestFile) {
         try {
-            manifest = Files.readAllBytes(Paths.get("manifest.es-AR.webapp"));
-            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(manifest);
-        } catch (IOException e) {
+            return ResponseEntity.ok().contentType(MediaType.valueOf("application/x-web-app-manifest+json")).body(Files.readAllBytes(Paths.get(manifestFile)));
+        } catch (Exception e) {
             // TODO replace with log:
             e.printStackTrace();
         }
-
         return ResponseEntity.notFound().build();
     }
 

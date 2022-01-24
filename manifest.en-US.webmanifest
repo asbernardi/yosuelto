@@ -1,0 +1,44 @@
+{
+  "lang": "en-US",
+  "name": "Give and Get",
+  "id": "GiveAndGet",
+  "short_name": "Give and Get",
+  "categories": ["social"],
+  "description":
+    "App to donate things you don't use anymore, and to get things you need.",
+  "icons": [
+    {
+      "src": "/favicon-56x56.png",
+      "type": "image/png",
+      "sizes": "56x56"
+    },
+    {
+      "src": "/favicon-112x112.png",
+      "type": "image/png",
+      "sizes": "112x112"
+    }
+  ],
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "orientation": "natural",
+  "b2g_features": {
+    "version": "1.0",
+    "core": true,
+    "subtitle": "Donate things you don't use anymore",
+    "permissions": {
+      "geolocation": {},
+      "mobiledata":{},
+      "wifidata":{}
+    },
+    "cursor": true,
+    "origin": "kaios-weather",
+    "developer": {
+      "name": "Coghlaniano",
+      "url": "https://giveget.herokuapp.com/"
+    },
+    "chrome": {
+      "statusbar": "overlap"
+    },
+    "focus_color": "#6054EF"
+  }
+}
