@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
-    <meta name="theme-color" content="rgb(255, 255, 255)">
+
     <title>Give&Get - Donate what you don't use anymore!</title>
 
     <link rel="canonical" href="https://giveget.herokuapp.com/">
@@ -56,8 +56,6 @@
             </div>
         </div>
 
-        <div class="row" id='ad-container'></div>
-
         <!-- <form th:action="@{/}" method="post" th:object="${location}">
             <div class="row py-lg-3">
                 <div class="col-sm-4 col-md-4">
@@ -79,9 +77,7 @@
                 <div class="col" th:each="publication : ${publications}">
                     <div class="card shadow-sm">
                         <a th:href="@{'/donacion/'+${publication.url}}">
-                            <object type="image/webp" data="http://localhost:8080/donacion/imagen/1.webp" th:attr="data=${publication.optimizedImageUrl}">
-                                <img class="card-img-top" src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.optimizedImageUrlJpg}"/>
-                            </object>
+                            <img class="card-img-top" src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.optimizedImageUrl}"/>
                         </a>
                         <div class="card-body">
                             <p class="card-text text-truncate" th:text="${publication.description}">Televisor de 20 pulgadas...</p>
@@ -214,49 +210,6 @@
           }, false)
         })
     })()
-</script>
-
-<script src="https://static.kaiads.com/ads-sdk/ads-sdk.v5.min.js"></script>
-
-<script>
-    // request an ad when the DOM is loaded
-    document.addEventListener("DOMContentLoaded", () => {
-        getKaiAd({
-            publisher: '4c63a196-4c9c-4d68-bf6e-ec7fb9f207b3',
-            app: 'GiveAndGet',
-            slot: 'indexPage',
-
-            h: 264,
-            w: 240,
-
-            // Max supported size is 240x264
-            // container is required for responsive ads
-            container: document.getElementById('ad-container'),
-            onerror: err => console.error('Custom catch:', err),
-            onready: ad => {
-
-                // Ad is ready to be displayed
-                // calling 'display' will display the ad
-                ad.call('display', {
-
-                    // In KaiOS the app developer is responsible
-                    // for user navigation, and can provide
-                    // navigational className and/or a tabindex
-                    tabindex: 0,
-
-                    // if the application is using
-                    // a classname to navigate
-                    // this classname will be applied
-                    // to the container
-                    navClass: 'items',
-
-                    // display style will be applied
-                    // to the container block or inline-block
-                    display: 'block',
-                })
-            }
-        })
-    });
 </script>
 
 </body>

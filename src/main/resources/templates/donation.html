@@ -62,9 +62,7 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
             <div class="col">
               <div class="card shadow-sm">
-                <object type="image/webp" data="http://localhost:8080/donacion/imagen/1.webp" th:attr="data=${publication.imageUrl}" class="bd-placeholder-img card-img-top" width="100%" height="100%" th:alt="${publication.description}" th:title="${publication.description}" loading="lazy">
-                  <img src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.optimizedImageUrlJpg}" class="bd-placeholder-img card-img-top" width="100%" height="100%" th:alt="${publication.description}" th:title="${publication.description}" loading="lazy"/>
-                </object>
+                <img src="http://localhost:8080/donacion/imagen/1.jpg" th:src="${publication.optimizedImageUrl}" class="bd-placeholder-img card-img-top" width="100%" height="100%" th:alt="${publication.description}" th:title="${publication.description}" loading="lazy"/>
                 
                 <div class="card-body">
                   <label class="form-label" th:text="#{donation.page.location}">Localidad:</label>
