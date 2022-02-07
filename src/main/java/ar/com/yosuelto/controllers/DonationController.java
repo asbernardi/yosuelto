@@ -276,6 +276,19 @@ public class DonationController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping(value = "/sitemap.xml")
+    public ResponseEntity<byte[]> getSitemap() {
+        try {
+            byte[] sitemapFile = Files.readAllBytes(Paths.get("sitemap.xml"));
+            return ResponseEntity.ok().contentType(MediaType.valueOf("application/xml")).body(sitemapFile);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
     private List<String> getCountries() {
         List<String> countries = Arrays.asList(ANY_COUNTRY, "Hong Kong", "South Africa", "India", "Argentina");
         return countries;
