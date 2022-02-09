@@ -289,6 +289,19 @@ public class DonationController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping(value = "/robots.txt")
+    public ResponseEntity<byte[]> getRobots() {
+        try {
+            byte[] robotsFile = Files.readAllBytes(Paths.get("robots.txt"));
+            return ResponseEntity.ok().contentType(MediaType.valueOf("text/plain")).body(robotsFile);
+        } catch (IOException e) {
+            // TODO replace with log:
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
     private List<String> getCountries() {
         List<String> countries = Arrays.asList(ANY_COUNTRY, "Hong Kong", "South Africa", "India", "Argentina");
         return countries;
